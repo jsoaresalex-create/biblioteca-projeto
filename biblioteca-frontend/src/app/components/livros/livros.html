@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="header">
+    <h2>Livros</h2>
+    <button class="btn-primary" (click)="abrirFormulario()">+ Novo Livro</button>
+  </div>
+
+  <div class="formulario" *ngIf="mostrarFormulario">
+    <h3>{{ editando ? 'Editar Livro' : 'Novo Livro' }}</h3>
+    <input placeholder="Título" [(ngModel)]="livroForm.titulo" />
+    <input placeholder="Autor" [(ngModel)]="livroForm.autor" />
+    <div class="botoes">
+      <button class="btn-primary" (click)="salvar()">Salvar</button>
+      <button class="btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livros">
+        <td>{{ livro.titulo }}</td>
+        <td>{{ livro.autor }}</td>
+        <td>
+          <span [class]="livro.disponivel ? 'disponivel' : 'indisponivel'">
+            {{ livro.disponivel ? 'Disponível' : 'Alugado' }}
+          </span>
+        </td>
+        <td>
+          <button class="btn-edit" (click)="editar(livro)">Editar</button>
+          <button class="btn-delete" (click)="deletar(livro.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

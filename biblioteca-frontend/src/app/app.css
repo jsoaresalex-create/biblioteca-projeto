@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  background-color: #2c3e50;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+nav h1 {
+  color: white;
+  font-size: 22px;
+  margin-right: auto;
+}
+
+nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.2s;
+  cursor: pointer;
+  background-color: #34495e;
+  display: inline-block;
+}
+
+nav a:hover {
+  background-color: #4a6278;
+}
+
+main {
+  padding: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}

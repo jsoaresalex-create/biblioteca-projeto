@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="header">
+    <h2>Aluguéis</h2>
+    <button class="btn-primary" (click)="abrirFormulario()">+ Novo Aluguel</button>
+  </div>
+
+  <div class="formulario" *ngIf="mostrarFormulario">
+    <h3>Novo Aluguel</h3>
+    <select [(ngModel)]="aluguelForm.livroId">
+      <option value="0" disabled>Selecione um livro</option>
+      <option *ngFor="let livro of livros" [value]="livro.id">{{ livro.titulo }}</option>
+    </select>
+    <input placeholder="Nome do locatário" [(ngModel)]="aluguelForm.nomeLocatario" />
+    <div class="botoes">
+      <button class="btn-primary" (click)="salvar()">Salvar</button>
+      <button class="btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Livro</th>
+        <th>Locatário</th>
+        <th>Data Aluguel</th>
+        <th>Data Devolução</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aluguel of alugueis">
+        <td>{{ aluguel.livro?.titulo }}</td>
+        <td>{{ aluguel.nomeLocatario }}</td>
+        <td>{{ aluguel.dataAluguel | date:'dd/MM/yyyy' }}</td>
+        <td>{{ aluguel.dataDevolucao ? (aluguel.dataDevolucao | date:'dd/MM/yyyy') : 'Pendente' }}</td>
+        <td>
+          <button class="btn-devolver" *ngIf="!aluguel.dataDevolucao" (click)="devolver(aluguel.id)">Devolver</button>
+          <button class="btn-delete" (click)="deletar(aluguel.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
